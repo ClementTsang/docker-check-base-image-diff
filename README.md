@@ -1,4 +1,4 @@
-# docker-check-base-image-updated
+# docker-check-base-image-diff
 
 A Github Action that checks for Docker base image updates. Leverages skopeo and jq.
 
