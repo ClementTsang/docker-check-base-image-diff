@@ -1,6 +1,9 @@
 name: "Docker Check Base Image Diff"
 description: "A Github Action that checks whether a derived image does not consist of a base image."
 author: Clement Tsang <ClementTsang>
+branding:
+  icon: box
+  color: blue
 
 inputs:
   base-image:
