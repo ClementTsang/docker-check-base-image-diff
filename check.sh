@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 BASE_LAYERS="$(skopeo inspect $1 | jq '.Layers')"
 DERIVED_LAYERS="$(skopeo inspect $2 | jq '.Layers')"
 

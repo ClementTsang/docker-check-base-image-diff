@@ -11,13 +11,14 @@ inputs:
     required: true
 outputs:
   differs:
-    description: "True or false"
-    value: ${{ steps.check.outputs.result }}
+    description: "Returns either true or false"
+    value: ${{ steps.check.outputs.differs }}
+
 runs:
   using: "composite"
   steps:
     - id: check
       shell: bash
       run: |
-        result=$(${{ github.action_path }}/check.sh ${{ inputs.base-image }} ${{ inputs.derived-image }})
-        echo "::set-output name=result::${result}"
+        RESULT=$(${{ github.action_path }}/check.sh ${{ inputs.base-image }} ${{ inputs.derived-image }})
+        echo "::set-output name=differs::$RESULT"

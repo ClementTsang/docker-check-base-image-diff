@@ -15,10 +15,21 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run
+        id: run_test
         uses: ./
         with:
-          base-image: docker://rust:slim-buster
+          base-image: docker://ghcr.io/clementtsang/cargo-deb-arm
           derived-image: docker://rust:slim-buster
+
+      - name: Check
+        run: |
+          echo Result: ${{ steps.run_test.outputs.differs }}
+          if [ ${{ steps.run_test.outputs.differs }} == 'true' ]; then
+            exit 0
+          else
+            echo "differs should always be true!"
+            exit 1
+          fi
 
   test-always-false:
     runs-on: ubuntu-latest
@@ -27,7 +38,18 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run
+        id: run_test
         uses: ./
         with:
-          base-image: docker://ghcr.io/clementtsang/cargo-deb-arm
+          base-image: docker://rust:slim-buster
           derived-image: docker://rust:slim-buster
+
+      - name: Check
+        run: |
+          echo Result: ${{ steps.run_test.outputs.differs }}
+          if [ ${{ steps.run_test.outputs.differs }} == 'false' ]; then
+            exit 0
+          else
+            echo "differs should always be false!"
+            exit 1
+          fi
