@@ -1,0 +1,33 @@
+# A simple test to test the functionality the action.
+
+name: Test
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches: [master]
+
+jobs:
+  test-always-true:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run
+        uses: ./
+        with:
+          base-image: docker://rust:slim-buster
+          derived-image: docker://rust:slim-buster
+
+  test-always-false:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run
+        uses: ./
+        with:
+          base-image: docker://ghcr.io/clementtsang/cargo-deb-arm
+          derived-image: docker://rust:slim-buster

@@ -1,0 +1,23 @@
+name: "Docker Check Base Image Diff"
+description: "A Github Action that checks whether a derived image does not consist of a base image."
+author: Clement Tsang <ClementTsang>
+
+inputs:
+  base-image:
+    description: "Base Docker image - follows skopeo format (e.g. docker://rust:slim-buster)"
+    required: true
+  derived-image:
+    description: "Derived Docker image - follows skopeo format (e.g. docker://rust:slim-buster)"
+    required: true
+outputs:
+  differs:
+    description: "True or false"
+    value: ${{ steps.check.outputs.result }}
+runs:
+  using: "composite"
+  steps:
+    - id: check
+      shell: bash
+      run: |
+        result=$(${{ github.action_path }}/check.sh ${{ inputs.base-image }} ${{ inputs.derived-image }})
+        echo "::set-output name=result::${result}"
