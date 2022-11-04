@@ -24,4 +24,4 @@ runs:
       shell: bash
       run: |
         RESULT=$(${{ github.action_path }}/check.sh ${{ inputs.base-image }} ${{ inputs.derived-image }})
-        echo "::set-output name=differs::$RESULT"
+        echo "differs=$RESULT" >> $GITHUB_OUTPUT
