@@ -36,7 +36,7 @@ The action returns either `true` or `false`, indicating if the derived image dif
 ```yaml
 - name: Run
   id: run
-  uses: ClementTsang/docker-check-base-image-diff@v0.0.1-alpha
+  uses: ClementTsang/docker-check-base-image-diff@v0.0.2
   with:
     base-image: docker://rust:slim-buster
     derived-image: docker://ghcr.io/clementtsang/cargo-deb-arm
