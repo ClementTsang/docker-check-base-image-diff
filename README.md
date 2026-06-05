@@ -7,7 +7,7 @@ Based on [lucacome's docker-image-update-checker](https://github.com/lucacome/do
 
 ## Usage
 
-_Note that this action assumes that `skopeo` is installed_; this appears to be true for GitHub's Ubuntu runners.
+_Note that this action assumes that `skopeo` and `jq` are installed_; this appears to be true for GitHub's Ubuntu runners.
 
 ### Inputs
 
